@@ -1,8 +1,8 @@
 package com.mashup.pixtus.pixtus.entity;
 
-public class UserExercise {
+public class Workout {
 
-	private int userExerciseId;
+	private int workoutId;
 
 	private int userId;
 
