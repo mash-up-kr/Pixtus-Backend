@@ -1,24 +1,38 @@
 package com.mashup.pixtus.pixtus.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mashup.pixtus.pixtus.dto.MainResponse;
+import com.mashup.pixtus.pixtus.dto.UserRequest;
 import com.mashup.pixtus.pixtus.dto.UserSignUpRequest;
+import com.mashup.pixtus.pixtus.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+	@Autowired
+	private UserService userService;
+
 	@PostMapping("sign-in")
-	public void signIn() {
-		// uid
+	public ResponseEntity signIn(@RequestBody UserRequest requestBody) {
+		if (userService.isExisted(requestBody.getUid())) {
+			return ResponseEntity.status(HttpStatus.OK).body(new MainResponse());
+		} else {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
 	}
 
 	@PostMapping("sign-up")
-	public void signUp(@RequestBody UserSignUpRequest requestBody) {
-		// TODO 반환 정보 확인
+	public ResponseEntity signUp(@RequestBody UserSignUpRequest requestBody) {
+		userService.signUp(requestBody);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 }
