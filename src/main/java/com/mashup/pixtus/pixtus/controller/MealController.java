@@ -1,5 +1,7 @@
 package com.mashup.pixtus.pixtus.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +14,8 @@ import com.mashup.pixtus.pixtus.dto.MealRequest;
 public class MealController {
 
 	@PostMapping("")
-	public void registerMeal(@RequestBody MealRequest requestBody) {
-		// TODO 유저 정보 반환 여부 확인
+	public ResponseEntity registerMeal(@RequestBody MealRequest requestBody) {
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 //	@GetMapping("/history")

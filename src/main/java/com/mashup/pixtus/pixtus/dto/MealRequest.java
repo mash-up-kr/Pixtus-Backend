@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MealRequest {
 	
-	private int userId;
+	private String uid;
 	
-	private int meals;
+	private int mealCnt;
 	
 
 }
