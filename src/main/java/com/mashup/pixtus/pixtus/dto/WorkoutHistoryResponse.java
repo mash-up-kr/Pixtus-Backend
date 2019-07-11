@@ -1,5 +1,7 @@
 package com.mashup.pixtus.pixtus.dto;
 
+import com.mashup.pixtus.pixtus.entity.Workout;
+
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -11,8 +13,10 @@ public class WorkoutHistoryResponse {
 
 	private int totalKcal;
 
-	public WorkoutHistoryResponse(String date, String exerciseName, int totalKcal) {
-		
+	public WorkoutHistoryResponse(Workout workout) {
+		this.date = workout.getDate();
+		this.exerciseName = workout.getExerciseName();
+		this.totalKcal = workout.getTotalKcal();
 	}
-	
+
 }

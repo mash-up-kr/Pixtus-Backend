@@ -6,9 +6,11 @@ import javax.persistence.Id;
 import com.mashup.pixtus.pixtus.dto.UserSignUpRequest;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class User {
 
 	@Id
@@ -34,17 +36,13 @@ public class User {
 
 	private int nextExp;
 
-//	@JoinColumn
-//	@OneToMany
-//	List<Workout> workouts;
-
 	private User(UserSignUpRequest reqestBody) {
 		this.uid = reqestBody.getUid();
 		this.email = reqestBody.getEmail();
 		this.name = reqestBody.getName();
 		this.characterName = reqestBody.getCharacterName();
-		this.height = reqestBody.getHeight();
-		this.weight = reqestBody.getWeight();
+//		this.height = reqestBody.getHeight();
+//		this.weight = reqestBody.getWeight();
 		this.gender = reqestBody.getGender();
 	}
 

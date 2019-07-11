@@ -3,10 +3,12 @@ package com.mashup.pixtus.pixtus.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@ToString
 public class UserSignUpRequest {
 
 	private String uid;
@@ -17,9 +19,9 @@ public class UserSignUpRequest {
 
 	private String characterName;
 
-	private int height;
+	private String height;
 
-	private int weight;
+	private String weight;
 
 	private String gender;
 
