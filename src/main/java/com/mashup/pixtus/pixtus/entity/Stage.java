@@ -12,6 +12,8 @@ public class Stage {
 	@Id
 	private int level;
 
+	private int prevExp;
+
 	private int nextExp;
 
 }

@@ -12,14 +12,16 @@ import com.mashup.pixtus.pixtus.repository.UserRepository;
 public class UserService {
 
 	private UserRepository userRepository;
-	private StageRepository stageRepository;
+	private StageService stageService;
+
+	public UserService(UserRepository userRepository, StageService stageService) {
+		this.userRepository = userRepository;
+		this.stageService = stageService;
+	}
+
 
 	private static final int SIGN_UP_LEVEL = 1;
 
-	public UserService(UserRepository userRepository, StageRepository stageRepository) {
-		this.userRepository = userRepository;
-		this.stageRepository = stageRepository;
-	}
 
 	public boolean isExisted(String uid) {
 		return userRepository.findById(uid).isPresent();
@@ -32,8 +34,7 @@ public class UserService {
 
 		User user = User.from(requestBody);
 
-		Stage stage = stageRepository.findById(SIGN_UP_LEVEL).get();
-		user.setLevel(stage);
+		user.setLevel(stageService.getStage(SIGN_UP_LEVEL));
 
 		userRepository.save(user);
 	}
@@ -43,4 +44,21 @@ public class UserService {
 		return userRepository.findById(uid).orElseThrow(RuntimeException::new);
 	}
 
+	public void increaseExp(String uid, int exp){
+		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
+		user.increaseExp(exp);
+
+		if(user.isLevelUp()){
+			user.setLevel(stageService.getNextStage(user.getLevel()));
+		}
+	}
+
+	public void decreaseExp(String uid, int exp){
+		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
+		user.decreaseExp(exp);
+
+		if(user.isLevelDown()){
+			user.setLevel(stageService.getPrevStage(user.getLevel()));
+		}
+	}
 }

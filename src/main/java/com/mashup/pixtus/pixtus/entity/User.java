@@ -54,7 +54,28 @@ public class User {
 
 	public void setLevel(Stage stage) {
 		this.level = stage.getLevel();
-		this.prevExp = this.nextExp;
+		this.prevExp = stage.getPrevExp();
 		this.nextExp = stage.getNextExp();
+	}
+
+	public void increaseExp(int exp){
+		this.exp += exp;
+	}
+
+	public void decreaseExp(int exp){
+//		0이하로 안떨어지게
+		if(this.exp < exp){
+			this.exp = 0;
+			return;
+		}
+		this.exp -= exp;
+	}
+
+	public boolean isLevelUp(){
+		return this.getExp() >= this.getNextExp();
+	}
+
+	public boolean isLevelDown(){
+		return this.getExp() < this.getPrevExp();
 	}
 }

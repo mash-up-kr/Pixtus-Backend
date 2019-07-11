@@ -1,5 +1,7 @@
 package com.mashup.pixtus.pixtus.controller;
 
+import com.mashup.pixtus.pixtus.service.ExerciseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +14,12 @@ import com.mashup.pixtus.pixtus.dto.ExerciseResponse;
 @RequestMapping("/exercises")
 public class ExerciseController {
 
+	@Autowired
+	private ExerciseService exerciseService;
+
 	@GetMapping("")
 	public ResponseEntity list() {
-		return ResponseEntity.status(HttpStatus.OK).body(new ExerciseResponse());
+		return ResponseEntity.status(HttpStatus.OK).body(exerciseService.getAll());
 	}
 
 }

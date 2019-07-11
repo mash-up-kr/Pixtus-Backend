@@ -1,5 +1,6 @@
 package com.mashup.pixtus.pixtus.controller;
 
+import com.mashup.pixtus.pixtus.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,13 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MainService mainService;
 
 	@PostMapping("sign-in")
 	public ResponseEntity signIn(@RequestBody UserRequest requestBody) {
 		if (userService.isExisted(requestBody.getUid())) {
-			return ResponseEntity.status(HttpStatus.OK).body(new MainResponse());
+			return ResponseEntity.status(HttpStatus.OK).body(mainService.getMain(requestBody.getUid()));
 		} else {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
