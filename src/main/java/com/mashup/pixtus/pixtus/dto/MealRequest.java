@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class MealRequest {
-	
+
 	private String uid;
-	
+
 	private int mealCnt;
 
 }

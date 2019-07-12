@@ -10,8 +10,9 @@ public class PixtusUtils {
 	}
 
 //   TODO 계산하는 부분 개선 필요
-	public static int calculateKcal(int kcal, int time){
-		return kcal * time;
+	public static int calculateKcal(int kcal, int time) {
+		int min = time / 60;
+		return kcal * min;
 	}
 
 }

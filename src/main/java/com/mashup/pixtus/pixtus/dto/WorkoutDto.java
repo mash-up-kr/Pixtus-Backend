@@ -16,7 +16,7 @@ public class WorkoutDto {
 	private String exerciseName;
 
 	private int totalKcal;
-	
+
 	public WorkoutDto(Workout workout) {
 		this.exerciseName = workout.getExerciseName();
 		this.totalKcal = workout.getTotalKcal();

@@ -41,8 +41,8 @@ public class User {
 		this.email = reqestBody.getEmail();
 		this.name = reqestBody.getName();
 		this.characterName = reqestBody.getCharacterName();
-//		this.height = reqestBody.getHeight();
-//		this.weight = reqestBody.getWeight();
+		this.height = reqestBody.getHeight();
+		this.weight = reqestBody.getWeight();
 		this.gender = reqestBody.getGender();
 	}
 
@@ -56,24 +56,23 @@ public class User {
 		this.nextExp = stage.getNextExp();
 	}
 
-	public void increaseExp(int exp){
+	public void increaseExp(int exp) {
 		this.exp += exp;
 	}
 
-	public void decreaseExp(int exp){
-//		0이하로 안떨어지게
-		if(this.exp < exp){
+	public void decreaseExp(int exp) {
+		if (this.exp < exp) {
 			this.exp = 0;
 			return;
 		}
 		this.exp -= exp;
 	}
 
-	public boolean isLevelUp(){
+	public boolean isLevelUp() {
 		return this.getExp() >= this.getNextExp();
 	}
 
-	public boolean isLevelDown(){
+	public boolean isLevelDown() {
 		return this.getExp() < this.getPrevExp();
 	}
 }

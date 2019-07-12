@@ -1,16 +1,13 @@
 package com.mashup.pixtus.pixtus.service;
 
 import org.springframework.stereotype.Service;
-
-import com.mashup.pixtus.pixtus.dto.UserSignUpRequest;
-import com.mashup.pixtus.pixtus.entity.Stage;
-import com.mashup.pixtus.pixtus.entity.User;
-import com.mashup.pixtus.pixtus.repository.StageRepository;
-import com.mashup.pixtus.pixtus.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mashup.pixtus.pixtus.dto.UserSignUpRequest;
+import com.mashup.pixtus.pixtus.entity.User;
+import com.mashup.pixtus.pixtus.repository.UserRepository;
+
 @Service
-@Transactional
 public class UserService {
 
 	private UserRepository userRepository;
@@ -21,9 +18,7 @@ public class UserService {
 		this.stageService = stageService;
 	}
 
-
 	private static final int SIGN_UP_LEVEL = 1;
-
 
 	public boolean isExisted(String uid) {
 		return userRepository.findById(uid).isPresent();
@@ -42,28 +37,27 @@ public class UserService {
 		userRepository.save(user);
 	}
 
-	@Transactional
 	public User get(String uid) {
 		// TODO 유저 없을 때 예외 추가
 		return userRepository.findById(uid).orElseThrow(RuntimeException::new);
 	}
 
 	@Transactional
-	public void increaseExp(String uid, int exp){
+	public void increaseExp(String uid, int exp) {
 		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
 		user.increaseExp(exp);
 
-		if(user.isLevelUp()){
+		if (user.isLevelUp()) {
 			user.setLevel(stageService.getNextStage(user.getLevel()));
 		}
 	}
 
 	@Transactional
-	public void decreaseExp(String uid, int exp){
+	public void decreaseExp(String uid, int exp) {
 		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
 		user.decreaseExp(exp);
 
-		if(user.isLevelDown()){
+		if (user.isLevelDown()) {
 			user.setLevel(stageService.getPrevStage(user.getLevel()));
 		}
 	}

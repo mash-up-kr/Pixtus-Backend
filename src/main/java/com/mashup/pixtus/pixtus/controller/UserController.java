@@ -19,6 +19,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
 	@Autowired
 	private MainService mainService;
 
@@ -33,8 +34,6 @@ public class UserController {
 
 	@PostMapping("/sign-up")
 	public ResponseEntity signUp(@RequestBody UserSignUpRequest requestBody) {
-		System.out.println(requestBody);
-		System.out.println(requestBody.getHeight());
 		userService.signUp(requestBody);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

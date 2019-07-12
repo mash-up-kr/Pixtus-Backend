@@ -31,7 +31,7 @@ public class Workout {
 
 	private int totalKcal;
 
-	private Workout (WorkoutRequest requestBody, String date, Exercise exercise){
+	private Workout(WorkoutRequest requestBody, String date, Exercise exercise) {
 		this.uid = requestBody.getUid();
 		this.date = date;
 		this.exerciseId = requestBody.getExerciseId();
@@ -40,7 +40,7 @@ public class Workout {
 		this.totalKcal = 0;
 	}
 
-	public static Workout from(WorkoutRequest requestBody, String date, Exercise exercise){
+	public static Workout from(WorkoutRequest requestBody, String date, Exercise exercise) {
 		return new Workout(requestBody, date, exercise);
 	}
 

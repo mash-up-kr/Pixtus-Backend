@@ -19,9 +19,9 @@ public class UserSignUpRequest {
 
 	private String characterName;
 
-	private String height;
+	private int height;
 
-	private String weight;
+	private int weight;
 
 	private String gender;
 

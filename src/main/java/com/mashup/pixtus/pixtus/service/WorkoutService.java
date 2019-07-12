@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mashup.pixtus.pixtus.dto.WorkoutHistoryRequest;
 import com.mashup.pixtus.pixtus.dto.WorkoutHistoryResponse;
@@ -14,10 +15,8 @@ import com.mashup.pixtus.pixtus.dto.WorkoutRequest;
 import com.mashup.pixtus.pixtus.entity.Exercise;
 import com.mashup.pixtus.pixtus.entity.Workout;
 import com.mashup.pixtus.pixtus.repository.WorkoutRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class WorkoutService {
 
 	private WorkoutRepository workoutRepository;
@@ -33,7 +32,6 @@ public class WorkoutService {
 
 	public List<Workout> listToday(String uid) {
 		String date = PixtusUtils.getTodayDate();
-		System.out.println(date);
 
 		return workoutRepository.findByUidAndDate(uid, date);
 	}
@@ -54,22 +52,19 @@ public class WorkoutService {
 		return new WorkoutRegisterResponse(kcal);
 	}
 
-	@Transactional
-	public Workout get(String date, WorkoutRequest requestBody, Exercise exercise) {
+	private Workout get(String date, WorkoutRequest requestBody, Exercise exercise) {
 		return workoutRepository.findByUidAndDateAndExerciseId(requestBody.getUid(), date, requestBody.getExerciseId())
 				.orElseGet(() -> Workout.from(requestBody, date, exercise));
 	}
 
-	@Transactional
-	public List<WorkoutHistoryResponse> getHistory(WorkoutHistoryRequest requestBody) {
-		int prevWeek = requestBody.getPrevWeek();
+	public List<WorkoutHistoryResponse> getHistory(String uid, int prevWeek) {
 		LocalDate startLocalDate = getStartDate(prevWeek);
 		LocalDate endLocalDate = getEndDate(startLocalDate, prevWeek);
 
 		String startDate = startLocalDate.format(DateTimeFormatter.BASIC_ISO_DATE);
 		String endDate = endLocalDate.format(DateTimeFormatter.BASIC_ISO_DATE);
-
-		List<Workout> list = workoutRepository.findByUidAndDateBetween(requestBody.getUid(), startDate, endDate);
+		
+		List<Workout> list = workoutRepository.findByUidAndDateBetween(uid, startDate, endDate);
 
 		return list.stream().map(WorkoutHistoryResponse::new).collect(Collectors.toList());
 	}

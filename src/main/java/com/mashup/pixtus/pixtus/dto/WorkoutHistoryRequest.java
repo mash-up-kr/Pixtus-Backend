@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WorkoutHistoryRequest {
 
-    private String uid;
+	private String uid;
 
-    private int prevWeek;
+	private int prevWeek;
 }

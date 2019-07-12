@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Getter
 public class WorkoutRegisterResponse {
 
-    private int exp;
+	private int exp;
 }

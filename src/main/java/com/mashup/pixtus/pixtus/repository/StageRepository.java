@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.mashup.pixtus.pixtus.entity.Stage;
 
 @Repository
-public interface StageRepository extends JpaRepository<Stage, Integer>{
+public interface StageRepository extends JpaRepository<Stage, Integer> {
 
 }
