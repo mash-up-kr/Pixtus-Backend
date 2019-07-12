@@ -5,11 +5,13 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class MainResponse {
 
 	private String characterName;
@@ -20,6 +22,6 @@ public class MainResponse {
 
 	private LocalDate date;
 
-	private List<WorkoutDto> workoutDtos;
+	private List<WorkoutDto> workouts;
 
 }

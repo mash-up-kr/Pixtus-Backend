@@ -2,9 +2,11 @@ package com.mashup.pixtus.pixtus.dto;
 
 import com.mashup.pixtus.pixtus.entity.Workout;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@Getter
 public class WorkoutHistoryResponse {
 
 	private String date;

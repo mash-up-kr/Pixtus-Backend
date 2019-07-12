@@ -18,4 +18,5 @@ public class MealService {
         int exp = requestBody.getMealCnt() * KCAL_PER_MEAL;
         userService.decreaseExp(requestBody.getUid(), exp);
     }
+
 }

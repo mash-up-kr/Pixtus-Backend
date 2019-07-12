@@ -14,8 +14,10 @@ import com.mashup.pixtus.pixtus.dto.WorkoutRequest;
 import com.mashup.pixtus.pixtus.entity.Exercise;
 import com.mashup.pixtus.pixtus.entity.Workout;
 import com.mashup.pixtus.pixtus.repository.WorkoutRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class WorkoutService {
 
 	private WorkoutRepository workoutRepository;
@@ -31,18 +33,20 @@ public class WorkoutService {
 
 	public List<Workout> listToday(String uid) {
 		String date = PixtusUtils.getTodayDate();
+		System.out.println(date);
 
 		return workoutRepository.findByUidAndDate(uid, date);
 	}
 
+	@Transactional
 	public WorkoutRegisterResponse registerWorkout(WorkoutRequest requestBody) {
 		String date = PixtusUtils.getTodayDate();
 		Exercise exercise = exerciseService.get(requestBody.getExerciseId());
 
 		Workout workout = get(date, requestBody, exercise);
+		workoutRepository.save(workout);
 
 		int kcal = PixtusUtils.calculateKcal(exercise.getKcal(), requestBody.getTime());
-
 		workout.updateWorkout(requestBody.getTime(), kcal);
 
 		userService.increaseExp(requestBody.getUid(), kcal);
@@ -50,11 +54,13 @@ public class WorkoutService {
 		return new WorkoutRegisterResponse(kcal);
 	}
 
+	@Transactional
 	public Workout get(String date, WorkoutRequest requestBody, Exercise exercise) {
 		return workoutRepository.findByUidAndDateAndExerciseId(requestBody.getUid(), date, requestBody.getExerciseId())
 				.orElseGet(() -> Workout.from(requestBody, date, exercise));
 	}
 
+	@Transactional
 	public List<WorkoutHistoryResponse> getHistory(WorkoutHistoryRequest requestBody) {
 		int prevWeek = requestBody.getPrevWeek();
 		LocalDate startLocalDate = getStartDate(prevWeek);

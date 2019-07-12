@@ -7,8 +7,10 @@ import com.mashup.pixtus.pixtus.entity.Stage;
 import com.mashup.pixtus.pixtus.entity.User;
 import com.mashup.pixtus.pixtus.repository.StageRepository;
 import com.mashup.pixtus.pixtus.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserService {
 
 	private UserRepository userRepository;
@@ -27,6 +29,7 @@ public class UserService {
 		return userRepository.findById(uid).isPresent();
 	}
 
+	@Transactional
 	public void signUp(UserSignUpRequest requestBody) {
 		// TODO 이미 회원일 경우 예외 추가하기
 		if (isExisted(requestBody.getUid()))
@@ -39,11 +42,13 @@ public class UserService {
 		userRepository.save(user);
 	}
 
+	@Transactional
 	public User get(String uid) {
 		// TODO 유저 없을 때 예외 추가
 		return userRepository.findById(uid).orElseThrow(RuntimeException::new);
 	}
 
+	@Transactional
 	public void increaseExp(String uid, int exp){
 		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
 		user.increaseExp(exp);
@@ -53,6 +58,7 @@ public class UserService {
 		}
 	}
 
+	@Transactional
 	public void decreaseExp(String uid, int exp){
 		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
 		user.decreaseExp(exp);
