@@ -32,6 +32,7 @@ public class MainService {
 		return MainResponse
 			.builder()
 			.characterName(user.getCharacterName())
+			.level(user.getLevel())
 			.exp(user.getExp())
 			.date(LocalDate.now())
 			.nextExp(user.getNextExp())

@@ -1,7 +1,9 @@
 package com.mashup.pixtus.pixtus.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.mashup.pixtus.pixtus.dto.ExerciseResponse;
 import org.springframework.stereotype.Service;
 
 import com.mashup.pixtus.pixtus.entity.Exercise;
@@ -18,6 +20,9 @@ public class ExerciseService {
 
 	public List<Exercise> getAll() {
 		List<Exercise> exercises = exerciseRepository.findAll();
+
+		exercises.stream().filter(e -> e.getExerciseId() != 1).collect(Collectors.toList());
+
 		return exercises;
 	}
 

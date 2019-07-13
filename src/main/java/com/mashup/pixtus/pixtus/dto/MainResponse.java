@@ -16,6 +16,8 @@ public class MainResponse {
 
 	private String characterName;
 
+	private int level;
+
 	private int exp;
 
 	private int nextExp;
