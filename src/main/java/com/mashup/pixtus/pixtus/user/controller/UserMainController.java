@@ -15,11 +15,11 @@ import com.mashup.pixtus.pixtus.user.service.UserMainService;
 public class UserMainController {
 
 	@Autowired
-	private UserMainService mainService;
+	private UserMainService userMainService;
 
 	@GetMapping("")
 	public ResponseEntity get(@RequestParam String uid) {
-		return ResponseEntity.status(HttpStatus.OK).body(mainService.getMain(uid));
+		return ResponseEntity.status(HttpStatus.OK).body(userMainService.getMain(uid));
 	}
 
 }

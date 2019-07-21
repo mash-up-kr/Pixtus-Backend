@@ -11,4 +11,6 @@ public class ReqUserDto {
 
 	private String uid;
 
+	private String email;
+
 }

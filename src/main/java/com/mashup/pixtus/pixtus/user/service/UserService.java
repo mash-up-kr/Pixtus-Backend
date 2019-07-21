@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mashup.pixtus.pixtus.stage.StageService;
 import com.mashup.pixtus.pixtus.user.UserRepository;
+import com.mashup.pixtus.pixtus.user.dto.ReqUserDto;
 import com.mashup.pixtus.pixtus.user.dto.ReqUserSignUpDto;
 import com.mashup.pixtus.pixtus.user.entity.User;
 
@@ -21,14 +22,14 @@ public class UserService {
 
 	private static final int SIGN_UP_LEVEL = 1;
 
-	public boolean isExisted(String uid) {
-		return userRepository.findById(uid).isPresent();
+	public boolean isExisted(String uid, String email) {
+		return userRepository.findById(uid).filter(u -> u.getEmail().equals(email)).isPresent();
 	}
 
 	@Transactional
 	public void signUp(ReqUserSignUpDto requestBody) {
 		// TODO 이미 회원일 경우 예외 추가하기
-		if (isExisted(requestBody.getUid()))
+		if (isExisted(requestBody.getUid(), requestBody.getEmail()))
 			throw new RuntimeException();
 
 		User user = User.from(requestBody);
