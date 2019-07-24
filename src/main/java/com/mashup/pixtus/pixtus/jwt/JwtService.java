@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.mashup.pixtus.pixtus.jwt.exception.UnauthorizedException;
 import com.mashup.pixtus.pixtus.user.dto.ReqUserDto;
 
 import io.jsonwebtoken.Claims;
@@ -23,11 +24,13 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class JwtService {
 	
-	@Value("${jwt.secret-key}")
 	private String secretKey;
 	
-	private final static int EXPIRE_TIME_MILLIS = 20000;
-
+	@Value("${jwt.secret-key}")
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
+	}
+	
 	public String create(ReqUserDto requestBody) {
 		Key key = Keys.hmacShaKeyFor(generateKey());
 		
@@ -35,17 +38,27 @@ public class JwtService {
 						.setHeaderParam("typ", "JWT")
 						.setSubject("user")
 						.claim("uid", requestBody.getUid())
-						.claim("expTime", System.currentTimeMillis() + EXPIRE_TIME_MILLIS)
 						.signWith(key, SignatureAlgorithm.HS256)
 						.compact();
 		
 		return jws;
 	}
+	
+	public boolean isUsable(String jws) {
+		getJwsClaims(jws);
+		
+		return true;
+	}
 
 	public Jws<Claims> getJwsClaims(String jws) {
-		Jws<Claims> claims = Jwts.parser()
-								.setSigningKey(generateKey())
-								.parseClaimsJws(jws);
+		Jws<Claims> claims;
+		try {
+			 claims = Jwts.parser()
+						.setSigningKey(generateKey())
+						.parseClaimsJws(jws);
+		} catch (Exception e) {
+			throw new UnauthorizedException();
+		}
 		
 		return claims;
 	}
@@ -68,11 +81,6 @@ public class JwtService {
 		byte[] key = null;
 		try {
 			key = secretKey.getBytes("UTF-8");
-			System.out.println("@@@@ byte key : " + key);
-			
-			for(byte b : key)
-				System.out.print(b);
-			System.out.println();
 			
 		} catch (UnsupportedEncodingException e) {
 			log.debug("generate key fail : {} ", e);
@@ -81,6 +89,5 @@ public class JwtService {
 
 		return key;
 	}
-
 
 }

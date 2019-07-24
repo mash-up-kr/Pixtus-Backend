@@ -28,18 +28,22 @@ public class UserController {
 	@Autowired
 	private JwtService jwtService;
 
+	private static final String HEADER_AUTH = "Authorization";
+
 	@PostMapping("/sign-in")
 	public ResponseEntity signIn(@RequestBody ReqUserDto requestBody) {
+
 		if (userService.isExisted(requestBody.getUid(), requestBody.getEmail())) {
 			String jws = jwtService.create(requestBody);
-			
+
 			HttpHeaders headers = new HttpHeaders();
-			headers.add("Authorization", jws);
-			
-			return ResponseEntity.status(HttpStatus.OK).headers(headers).body(userMainService.getMain(requestBody.getUid()));
-		} else {
-			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+			headers.add(HEADER_AUTH, jws);
+
+			return ResponseEntity.status(HttpStatus.OK).headers(headers)
+					.body(userMainService.getMain(requestBody.getUid()));
 		}
+
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
 	@PostMapping("/sign-up")
