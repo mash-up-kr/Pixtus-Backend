@@ -15,32 +15,4 @@ public class PixtusUtils {
 		return kcal * min;
 	}
 
-	public static StartAndEndDate getDate (int prevWeek){
-		LocalDate startLocalDate = getStartDate(prevWeek);
-		LocalDate endLocalDate = getEndDate(startLocalDate, prevWeek);
-
-		String startDate = startLocalDate.format(DateTimeFormatter.BASIC_ISO_DATE);
-		String endDate = endLocalDate.format(DateTimeFormatter.BASIC_ISO_DATE);
-
-		return StartAndEndDate
-				.builder()
-				.startDate(startDate)
-				.endDate(endDate)
-				.build();
-	}
-
-	private static LocalDate getStartDate(int prevWeek) {
-		LocalDate today = LocalDate.now();
-		int todayValue = today.getDayOfWeek().getValue();
-
-		return today.minusWeeks(prevWeek + 1).plusDays(7 - todayValue);
-	}
-
-	private static LocalDate getEndDate(LocalDate startDate, int prevWeek) {
-		if (prevWeek == 0)
-			return LocalDate.now();
-
-		return startDate.plusDays(6);
-	}
-
 }

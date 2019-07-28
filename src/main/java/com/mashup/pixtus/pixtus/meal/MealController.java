@@ -25,10 +25,4 @@ public class MealController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 
-	@GetMapping("/history")
-	public ResponseEntity getHistory(@RequestParam(defaultValue = "0") int prevWeek) {
-		String uid = jwtService.getUid();
-		return ResponseEntity.status(HttpStatus.OK).body(mealService.getHistory(uid, prevWeek));
-	}
-
 }
