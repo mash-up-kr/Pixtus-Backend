@@ -1,5 +1,7 @@
 package com.mashup.pixtus.pixtus.history.dto;
 
+import com.mashup.pixtus.pixtus.meal.dto.MealHistoryDto;
+import com.mashup.pixtus.pixtus.workout.dto.WorkoutHistoryDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,5 +14,6 @@ public class ResHistoryDto {
     List<MealHistoryDto> mealHistory;
 
     List<WorkoutHistoryDto> workoutHistory;
-    
+
+
 }

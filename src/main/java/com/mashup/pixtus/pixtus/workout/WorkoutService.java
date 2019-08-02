@@ -1,7 +1,10 @@
 package com.mashup.pixtus.pixtus.workout;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.mashup.pixtus.pixtus.meal.dto.MealHistoryDto;
+import com.mashup.pixtus.pixtus.workout.dto.WorkoutHistoryDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +55,14 @@ public class WorkoutService {
 	private Workout get(String date, ReqWorkoutRegisterDto requestBody, Exercise exercise) {
 		return workoutRepository.findByUidAndDateAndExerciseId(requestBody.getUid(), date, requestBody.getExerciseId())
 				.orElseGet(() -> Workout.from(requestBody, date, exercise));
+	}
+
+
+	public List<WorkoutHistoryDto> getHistory(String uid, String startDate, String endDate){
+		return workoutRepository.findByUidAndDateBetween(uid, startDate, endDate)
+				                .stream()
+							    .map(WorkoutHistoryDto::new)
+				                .collect(Collectors.toList());
 	}
 
 }

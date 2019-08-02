@@ -18,6 +18,6 @@ public class HistoryController {
     @GetMapping("/history")
     public ResponseEntity getHistory(@RequestParam(defaultValue = "0") int prevWeek) {
         String uid = jwtService.getUid();
-        return ResponseEntity.status(HttpStatus.OK).body(historyService.getHistory(uid, prevWeek));
+        return ResponseEntity.status(HttpStatus.OK).body(historyService.get(uid, prevWeek));
     }
 }

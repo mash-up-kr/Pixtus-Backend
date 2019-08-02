@@ -1,4 +1,4 @@
-package com.mashup.pixtus.pixtus.history.dto;
+package com.mashup.pixtus.pixtus.meal.dto;
 
 import com.mashup.pixtus.pixtus.meal.entity.Meal;
 import com.mashup.pixtus.pixtus.meal.entity.MealType;

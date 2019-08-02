@@ -1,4 +1,4 @@
-package com.mashup.pixtus.pixtus.history.dto;
+package com.mashup.pixtus.pixtus.workout.dto;
 
 import com.mashup.pixtus.pixtus.workout.entity.Workout;
 
