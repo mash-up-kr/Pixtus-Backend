@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Getter
-public class ResWorkoutHistoryDto {
+public class WorkoutHistoryDto {
 
 	private String date;
 
@@ -15,7 +15,7 @@ public class ResWorkoutHistoryDto {
 
 	private int totalKcal;
 
-	public ResWorkoutHistoryDto(Workout workout) {
+	public WorkoutHistoryDto(Workout workout) {
 		this.date = workout.getDate();
 		this.exerciseName = workout.getExerciseName();
 		this.totalKcal = workout.getTotalKcal();

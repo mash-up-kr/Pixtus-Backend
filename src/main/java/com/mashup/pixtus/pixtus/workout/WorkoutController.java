@@ -26,9 +26,4 @@ public class WorkoutController {
 		return ResponseEntity.status(HttpStatus.OK).body(workoutService.registerWorkout(requestBody));
 	}
 
-	@GetMapping("/history")
-	public ResponseEntity getHistory(@RequestParam String uid, @RequestParam(defaultValue = "0") int prevWeek) {
-		return ResponseEntity.status(HttpStatus.OK).body(workoutService.getHistory(uid, prevWeek));
-	}
-
 }
