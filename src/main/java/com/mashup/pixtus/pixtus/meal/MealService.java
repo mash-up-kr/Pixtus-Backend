@@ -27,7 +27,7 @@ public class MealService {
     private final JwtService jwtService;
 
     public List<MealHistoryDto> getHistory(String uid, String startDate, String endDate) {
-        return mealRepository.findByUidAndDateBetween(uid, startDate, endDate)
+        return mealRepository.findByUidAndDateIdBetween(uid, startDate, endDate)
                              .stream()
                              .map(MealHistoryDto::new)
                              .collect(Collectors.toList());
