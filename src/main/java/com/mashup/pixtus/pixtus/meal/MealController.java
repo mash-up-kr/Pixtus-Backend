@@ -1,9 +1,11 @@
 package com.mashup.pixtus.pixtus.meal;
 
-import com.mashup.pixtus.pixtus.jwt.JwtService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.mashup.pixtus.pixtus.meal.dto.ReqMealDto;
 
@@ -12,11 +14,9 @@ import com.mashup.pixtus.pixtus.meal.dto.ReqMealDto;
 public class MealController {
 
 	private MealService mealService;
-	private JwtService jwtService;
 
-	public MealController(MealService mealService, JwtService jwtService) {
+	public MealController(MealService mealService) {
 		this.mealService = mealService;
-		this.jwtService = jwtService;
 	}
 
 	@PostMapping("")

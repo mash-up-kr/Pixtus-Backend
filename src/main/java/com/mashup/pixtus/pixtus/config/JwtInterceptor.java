@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.mashup.pixtus.pixtus.jwt.JwtService;
-import com.mashup.pixtus.pixtus.jwt.exception.UnauthorizedException;
 
 @Component
 public class JwtInterceptor implements HandlerInterceptor {

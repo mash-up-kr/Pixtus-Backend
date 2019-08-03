@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class MealHistoryDto {
-    private String date;
+    private String dateId;
 
     private MealType type;
 
     private int kcal;
 
     public MealHistoryDto(Meal meal) {
-        this.date = meal.getDate();
+        this.dateId = meal.getDateId();
         this.type = meal.getType();
         this.kcal = meal.getTotalKcal();
     }
