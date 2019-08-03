@@ -9,7 +9,7 @@ public class PixtusUtils {
 		return LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE);
 	}
 
-//   TODO 계산하는 부분 개선 필요
+	// TODO 계산하는 부분 개선 필요
 	public static int calculateKcal(int kcal, int time) {
 		int min = time / 60;
 		return kcal * min;
