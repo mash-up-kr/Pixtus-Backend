@@ -16,12 +16,18 @@ public class ExerciseService {
 		this.exerciseRepository = exerciseRepository;
 	}
 
+	private static final int WALK_EXERCISE_ID = 1;
+
 	public List<Exercise> getAll() {
-		List<Exercise> exercises = exerciseRepository.findAll();
+		return exerciseRepository.findAll();
+	}
 
-		exercises.stream().filter(e -> e.getExerciseId() != 1).collect(Collectors.toList());
+	public List<Exercise> getAllExcludeId(int exerciseId) {
+		return getAll().stream().filter(e -> e.getExerciseId() != exerciseId).collect(Collectors.toList());
+	}
 
-		return exercises;
+	public List<Exercise> getAllExcludeWalk() {
+		return getAllExcludeId(WALK_EXERCISE_ID);
 	}
 
 	public Exercise get(int id) {

@@ -16,7 +16,7 @@ public class ExerciseController {
 
 	@GetMapping("")
 	public ResponseEntity list() {
-		return ResponseEntity.status(HttpStatus.OK).body(exerciseService.getAll());
+		return ResponseEntity.status(HttpStatus.OK).body(exerciseService.getAllExcludeWalk());
 	}
 
 }

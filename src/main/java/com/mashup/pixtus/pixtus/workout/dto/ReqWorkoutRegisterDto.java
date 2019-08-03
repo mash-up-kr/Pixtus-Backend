@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReqWorkoutRegisterDto {
 
-	private String uid;
-
 	private int exerciseId;
 
 	private int time;

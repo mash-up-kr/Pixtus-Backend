@@ -13,5 +13,5 @@ public interface MealRepository extends JpaRepository<Meal, Integer> {
 	// TODO uid, dateId 인덱스 추가 필요
 	List<Meal> findByUidAndDateId(String uid, String dateId);
 
-	List<Meal> findByUidAndDateBetween(String uid, String startDate, String endDate);
+	List<Meal> findByUidAndDateIdBetween(String uid, String startDate, String endDate);
 }

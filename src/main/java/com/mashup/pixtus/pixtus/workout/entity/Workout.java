@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.mashup.pixtus.pixtus.exercise.entity.Exercise;
-import com.mashup.pixtus.pixtus.workout.dto.ReqWorkoutRegisterDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,17 +31,17 @@ public class Workout {
 
 	private int totalKcal;
 
-	private Workout(ReqWorkoutRegisterDto requestBody, String date, Exercise exercise) {
-		this.uid = requestBody.getUid();
+	private Workout(String uid, String date, Exercise exercise) {
+		this.uid = uid;
 		this.date = date;
-		this.exerciseId = requestBody.getExerciseId();
+		this.exerciseId = exercise.getExerciseId();
 		this.exerciseName = exercise.getName();
 		this.time = 0;
 		this.totalKcal = 0;
 	}
 
-	public static Workout from(ReqWorkoutRegisterDto requestBody, String date, Exercise exercise) {
-		return new Workout(requestBody, date, exercise);
+	public static Workout from(String uid, String date, Exercise exercise) {
+		return new Workout(uid, date, exercise);
 	}
 
 	public void updateWorkout(int time, int totalKcal) {
