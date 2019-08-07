@@ -11,8 +11,8 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private JwtInterceptor jwtInterceptor;
 	
-	private static final String[] EXCLUDE_PATHS = { "/user/**" };
-
+	private static final String[] EXCLUDE_PATHS = { "/user/**", "/swagger-ui.html", "/swagger-resources/**" };
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(jwtInterceptor)
