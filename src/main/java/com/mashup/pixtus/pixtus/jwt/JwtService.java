@@ -45,8 +45,9 @@ public class JwtService {
 	}
 	
 	public boolean isUsable(String jws) {
+		log.info("jws : {} ", jws);
 		getJwsClaims(jws);
-		
+
 		return true;
 	}
 
