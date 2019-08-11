@@ -23,13 +23,19 @@ spring:
          ddl-auto: none
       show-sql: true
       properties:
-         hibernate.format_sql: true
+         #hibernate.format_sql: true
+         hibernate:
+            format_sql: true
+            dialect: org.hibernate.dialect.MySQL55Dialect
+     
    datasource:
-      url: jdbc:mysql://localhost:3306/pixtus?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      url: jdbc:mysql://${url}:3306/pixtus?serverTimezone=Asia/Seoul&useUnicode=true&characterEncoding=UTF-8&useSSL=false
       username: ${username}
       password: ${password}
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 logging.level.org.hibernate.type.descriptor.sql: trace
+
+---
 
 jwt.secret-key: ${secret-key}
