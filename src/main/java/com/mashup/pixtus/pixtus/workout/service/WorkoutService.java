@@ -3,6 +3,7 @@ package com.mashup.pixtus.pixtus.workout.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,20 +19,13 @@ import com.mashup.pixtus.pixtus.workout.dto.WorkoutHistoryDto;
 import com.mashup.pixtus.pixtus.workout.entity.Workout;
 
 @Service
+@RequiredArgsConstructor
 public class WorkoutService {
 
-	private WorkoutRepository workoutRepository;
-	private ExerciseService exerciseService;
-	private UserService userService;
-	private JwtService jwtService;
-
-	public WorkoutService(WorkoutRepository workoutRepository, ExerciseService exerciseService, UserService userService,
-			JwtService jwtService) {
-		this.workoutRepository = workoutRepository;
-		this.exerciseService = exerciseService;
-		this.userService = userService;
-		this.jwtService = jwtService;
-	}
+	private final WorkoutRepository workoutRepository;
+	private final ExerciseService exerciseService;
+	private final UserService userService;
+	private final JwtService jwtService;
 
 	public List<Workout> listToday(String uid) {
 		String dateId = PixtusUtils.getTodayDateId();
@@ -44,6 +38,7 @@ public class WorkoutService {
 		String uid = jwtService.getUid();
 
 		String dateId = PixtusUtils.getTodayDateId();
+
 		Exercise exercise = exerciseService.get(requestBody.getExerciseId());
 
 		Workout workout = get(uid, dateId, exercise);
