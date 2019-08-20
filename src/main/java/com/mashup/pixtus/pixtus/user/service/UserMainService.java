@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.mashup.pixtus.pixtus.jwt.JwtService;
 import com.mashup.pixtus.pixtus.user.dto.ResUserMainDto;
 import com.mashup.pixtus.pixtus.user.entity.User;
-import com.mashup.pixtus.pixtus.workout.WorkoutService;
 import com.mashup.pixtus.pixtus.workout.dto.ResWorkoutDto;
 import com.mashup.pixtus.pixtus.workout.entity.Workout;
+import com.mashup.pixtus.pixtus.workout.service.WorkoutService;
 
 @Service
 public class UserMainService {

@@ -3,8 +3,9 @@ package com.mashup.pixtus.pixtus.history;
 import com.mashup.pixtus.pixtus.history.dto.ResHistoryDto;
 import com.mashup.pixtus.pixtus.meal.dto.MealHistoryDto;
 import com.mashup.pixtus.pixtus.workout.dto.WorkoutHistoryDto;
+import com.mashup.pixtus.pixtus.workout.service.WorkoutService;
 import com.mashup.pixtus.pixtus.meal.MealService;
-import com.mashup.pixtus.pixtus.workout.WorkoutService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
