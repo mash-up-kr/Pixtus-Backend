@@ -48,7 +48,7 @@ public class MealServiceTest {
 	@Before
 	public void setUp() {
 		uid = "1234";
-		dateId = PixtusUtils.getTodayDate();
+		dateId = PixtusUtils.getTodayDateId();
 
 		meals = new ArrayList<>();
 		meals.add(new Meal(uid, dateId, MealType.B, MealType.B.getKcal()));

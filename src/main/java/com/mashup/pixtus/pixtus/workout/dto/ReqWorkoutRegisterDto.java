@@ -11,6 +11,7 @@ public class ReqWorkoutRegisterDto {
 
 	private int exerciseId;
 
-	private int time;
+	private int amount;
+	
 
 }

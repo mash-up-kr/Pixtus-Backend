@@ -36,7 +36,7 @@ public class MealService {
 	@Transactional
 	public void registerMeal(ReqMealDto requestBody) {
 		String uid = jwtService.getUid();
-		String dateId = PixtusUtils.getTodayDate();
+		String dateId = PixtusUtils.getTodayDateId();
 
 		List<Meal> meals = mealRepository.findByUidAndDateId(uid, dateId);
 		Map<MealType, Meal> mealTypeAndMeal = meals.stream()

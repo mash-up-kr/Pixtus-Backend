@@ -8,7 +8,9 @@ spring:
    profiles: dev
    h2:
       console:
-         enabled: true   
+         enabled: true
+         
+jwt.secret-key: PixtusSecretKey   
 
 ---
 
@@ -36,6 +38,7 @@ spring:
 
 logging.level.org.hibernate.type.descriptor.sql: trace
 
+jwt.secret-key: ${secret-key}
+
 ---
 
-jwt.secret-key: ${secret-key}

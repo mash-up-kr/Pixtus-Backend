@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mashup.pixtus.pixtus.exercise.entity.ExerciseType;
+import com.mashup.pixtus.pixtus.exercise.service.ExerciseService;
+
 @RestController
 @RequestMapping("/exercises")
 public class ExerciseController {
@@ -16,7 +19,7 @@ public class ExerciseController {
 
 	@GetMapping("")
 	public ResponseEntity list() {
-		return ResponseEntity.status(HttpStatus.OK).body(exerciseService.getAllExcludeWalk());
+		return ResponseEntity.status(HttpStatus.OK).body(exerciseService.getExercisesByType(ExerciseType.T));
 	}
 
 }
