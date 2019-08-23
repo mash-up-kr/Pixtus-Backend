@@ -1,4 +1,4 @@
-package com.mashup.pixtus.pixtus.Exception;
+package com.mashup.pixtus.pixtus.exception;
 
 import lombok.Builder;
 import lombok.Getter;

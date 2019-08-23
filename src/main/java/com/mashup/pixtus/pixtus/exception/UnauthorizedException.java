@@ -1,4 +1,4 @@
-package com.mashup.pixtus.pixtus.Exception;
+package com.mashup.pixtus.pixtus.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

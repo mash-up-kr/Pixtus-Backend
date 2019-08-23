@@ -1,4 +1,4 @@
-package com.mashup.pixtus.pixtus.Exception;
+package com.mashup.pixtus.pixtus.exception;
 
 class BaseException extends RuntimeException {
     protected ErrorModel error;

@@ -3,13 +3,13 @@ package com.mashup.pixtus.pixtus.workout.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mashup.pixtus.pixtus.exercise.entity.Exercise;
 import com.mashup.pixtus.pixtus.exercise.service.ExerciseService;
 import com.mashup.pixtus.pixtus.jwt.JwtService;
+import com.mashup.pixtus.pixtus.user.entity.User;
 import com.mashup.pixtus.pixtus.user.service.UserService;
 import com.mashup.pixtus.pixtus.util.PixtusUtils;
 import com.mashup.pixtus.pixtus.workout.WorkoutRepository;
@@ -17,6 +17,8 @@ import com.mashup.pixtus.pixtus.workout.dto.ReqWorkoutRegisterDto;
 import com.mashup.pixtus.pixtus.workout.dto.ResWorkoutRegisterDto;
 import com.mashup.pixtus.pixtus.workout.dto.WorkoutHistoryDto;
 import com.mashup.pixtus.pixtus.workout.entity.Workout;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -48,9 +50,13 @@ public class WorkoutService {
 		workout.updateWorkout(requestBody.getAmount(), kcal);
 		workoutRepository.save(workout);
 
-		userService.increaseExp(uid, kcal);
+		User user = userService.get(uid);
 
-		return new ResWorkoutRegisterDto(kcal);
+		ResWorkoutRegisterDto responseBody = new ResWorkoutRegisterDto(kcal, user.getExp(), user.getNextExp());
+
+		userService.increaseExp(user, kcal);
+
+		return responseBody;
 	}
 
 	private Workout get(String uid, String dateId, Exercise exercise) {
