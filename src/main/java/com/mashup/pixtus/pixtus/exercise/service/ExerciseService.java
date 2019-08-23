@@ -3,9 +3,9 @@ package com.mashup.pixtus.pixtus.exercise.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.mashup.pixtus.pixtus.Exception.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import com.mashup.pixtus.pixtus.exception.BadRequestException;
 import com.mashup.pixtus.pixtus.exercise.ExerciseRepository;
 import com.mashup.pixtus.pixtus.exercise.entity.Exercise;
 import com.mashup.pixtus.pixtus.exercise.entity.ExerciseType;

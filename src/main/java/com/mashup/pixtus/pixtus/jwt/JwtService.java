@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.mashup.pixtus.pixtus.Exception.UnauthorizedException;
+import com.mashup.pixtus.pixtus.exception.UnauthorizedException;
 import com.mashup.pixtus.pixtus.user.dto.ReqUserDto;
 
 import io.jsonwebtoken.Claims;

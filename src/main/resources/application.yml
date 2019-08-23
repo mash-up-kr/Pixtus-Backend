@@ -38,6 +38,8 @@ spring:
 
 logging.level.org.hibernate.type.descriptor.sql: trace
 
+server.tomcat.accesslog.enabled: true
+
 jwt.secret-key: ${secret-key}
 
 ---

@@ -1,4 +1,4 @@
-package com.mashup.pixtus.pixtus.Exception;
+package com.mashup.pixtus.pixtus.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -6,22 +6,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.time.LocalDateTime;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class NotExistUserException extends BaseException {
+public class BadRequestException extends BaseException {
 
-    public NotExistUserException() {
-        this("없는 ID 입니다.");
+    public BadRequestException(){
+        this(HttpStatus.BAD_REQUEST.getReasonPhrase());
     }
 
-    public NotExistUserException(String msg) {
-        this (HttpStatus.NOT_FOUND.value(), msg);
+    public BadRequestException(String msg) {
+        this(HttpStatus.BAD_REQUEST.value(), msg);
     }
 
-    public NotExistUserException(int code, String msg) {
+    public BadRequestException(int code, String msg) {
         super(ErrorModel.builder()
                 .code(code)
                 .msg(msg)
                 .timestamp(LocalDateTime.now())
                 .build());
     }
-
 }

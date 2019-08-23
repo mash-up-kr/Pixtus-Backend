@@ -1,10 +1,10 @@
 package com.mashup.pixtus.pixtus.user.service;
 
-import com.mashup.pixtus.pixtus.Exception.BadRequestException;
-import com.mashup.pixtus.pixtus.Exception.NotExistUserException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mashup.pixtus.pixtus.exception.BadRequestException;
+import com.mashup.pixtus.pixtus.exception.NotExistUserException;
 import com.mashup.pixtus.pixtus.stage.StageService;
 import com.mashup.pixtus.pixtus.user.UserRepository;
 import com.mashup.pixtus.pixtus.user.dto.ReqUserSignUpDto;
@@ -46,6 +46,11 @@ public class UserService {
 	@Transactional
 	public void increaseExp(String uid, int exp) {
 		User user = userRepository.findById(uid).orElseThrow(NotExistUserException::new);
+
+		increaseExp(user, exp);
+	}
+
+	public void increaseExp(User user, int exp) {
 		user.increaseExp(exp);
 
 		if (user.isLevelUp()) {

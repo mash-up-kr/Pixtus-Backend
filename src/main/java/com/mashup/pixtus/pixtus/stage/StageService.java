@@ -1,8 +1,8 @@
 package com.mashup.pixtus.pixtus.stage;
 
-import com.mashup.pixtus.pixtus.Exception.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import com.mashup.pixtus.pixtus.exception.BadRequestException;
 import com.mashup.pixtus.pixtus.stage.entity.Stage;
 
 @Service
