@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.mashup.pixtus.pixtus.jwt.exception.UnauthorizedException;
+import com.mashup.pixtus.pixtus.Exception.UnauthorizedException;
 import com.mashup.pixtus.pixtus.user.dto.ReqUserDto;
 
 import io.jsonwebtoken.Claims;
@@ -58,7 +58,7 @@ public class JwtService {
 						.setSigningKey(generateKey())
 						.parseClaimsJws(jws);
 		} catch (Exception e) {
-			throw new UnauthorizedException();
+			throw new UnauthorizedException("올바르지 않은 계정입니다.");
 		}
 		
 		return claims;

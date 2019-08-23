@@ -1,11 +1,12 @@
 package com.mashup.pixtus.pixtus.user.service;
 
+import com.mashup.pixtus.pixtus.Exception.BadRequestException;
+import com.mashup.pixtus.pixtus.Exception.NotExistUserException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mashup.pixtus.pixtus.stage.StageService;
 import com.mashup.pixtus.pixtus.user.UserRepository;
-import com.mashup.pixtus.pixtus.user.dto.ReqUserDto;
 import com.mashup.pixtus.pixtus.user.dto.ReqUserSignUpDto;
 import com.mashup.pixtus.pixtus.user.entity.User;
 
@@ -28,9 +29,8 @@ public class UserService {
 
 	@Transactional
 	public void signUp(ReqUserSignUpDto requestBody) {
-		// TODO 이미 회원일 경우 예외 추가하기
 		if (isExisted(requestBody.getUid(), requestBody.getEmail()))
-			throw new RuntimeException();
+			throw new BadRequestException("이미 가입한 회원입니다.");
 
 		User user = User.from(requestBody);
 
@@ -40,13 +40,12 @@ public class UserService {
 	}
 
 	public User get(String uid) {
-		// TODO 유저 없을 때 예외 추가
-		return userRepository.findById(uid).orElseThrow(RuntimeException::new);
+		return userRepository.findById(uid).orElseThrow(NotExistUserException::new);
 	}
 
 	@Transactional
 	public void increaseExp(String uid, int exp) {
-		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
+		User user = userRepository.findById(uid).orElseThrow(NotExistUserException::new);
 		user.increaseExp(exp);
 
 		if (user.isLevelUp()) {
@@ -56,7 +55,7 @@ public class UserService {
 
 	@Transactional
 	public void decreaseExp(String uid, int exp) {
-		User user = userRepository.findById(uid).orElseThrow(RuntimeException::new);
+		User user = userRepository.findById(uid).orElseThrow(NotExistUserException::new);
 		user.decreaseExp(exp);
 
 		if (user.isLevelDown()) {

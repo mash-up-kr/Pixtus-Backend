@@ -3,6 +3,7 @@ package com.mashup.pixtus.pixtus.exercise.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.mashup.pixtus.pixtus.Exception.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import com.mashup.pixtus.pixtus.exercise.ExerciseRepository;
@@ -27,6 +28,7 @@ public class ExerciseService {
 	}
 
 	public Exercise get(int id) {
-		return exerciseRepository.findById(id).get();
+		return exerciseRepository.findById(id)
+				.orElseThrow(() -> new BadRequestException("등록되지 않은 운동입니다."));
 	}
 }

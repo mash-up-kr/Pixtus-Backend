@@ -26,11 +26,11 @@ public class MealService {
     private final MealRepository mealRepository;
     private final JwtService jwtService;
 
-    public List<MealHistoryDto> getHistory(String uid, String startDate, String endDate) {
+	public List<MealHistoryDto> getHistory(String uid, String startDate, String endDate) {
         return mealRepository.findByUidAndDateIdBetween(uid, startDate, endDate)
-                             .stream()
-                             .map(MealHistoryDto::new)
-                             .collect(Collectors.toList());
+				.stream()
+				.map(MealHistoryDto::new)
+				.collect(Collectors.toList());
     }
 
 	@Transactional
@@ -39,6 +39,7 @@ public class MealService {
 		String dateId = PixtusUtils.getTodayDateId();
 
 		List<Meal> meals = mealRepository.findByUidAndDateId(uid, dateId);
+
 		Map<MealType, Meal> mealTypeAndMeal = meals.stream()
 				.collect(Collectors.toMap(Meal::getType, Function.identity()));
 
