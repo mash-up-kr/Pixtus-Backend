@@ -50,6 +50,7 @@ public class UserService {
 		increaseExp(user, exp);
 	}
 
+	@Transactional
 	public void increaseExp(User user, int exp) {
 		user.increaseExp(exp);
 
