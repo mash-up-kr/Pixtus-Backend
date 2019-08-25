@@ -1,15 +1,20 @@
 package com.mashup.pixtus.pixtus.exception;
 
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
-import java.time.LocalDateTime;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class NotExistUserException extends BaseException {
 
-    public NotExistUserException() {
-        this("없는 ID 입니다.");
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2755439459634742204L;
+
+	public NotExistUserException() {
+        this("존재하지 않는 ID 입니다.");
     }
 
     public NotExistUserException(String msg) {

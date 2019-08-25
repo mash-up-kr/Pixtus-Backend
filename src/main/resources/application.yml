@@ -25,7 +25,6 @@ spring:
          ddl-auto: none
       show-sql: true
       properties:
-         #hibernate.format_sql: true
          hibernate:
             format_sql: true
             dialect: org.hibernate.dialect.MySQL55Dialect
@@ -37,8 +36,6 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
 
 logging.level.org.hibernate.type.descriptor.sql: trace
-
-server.tomcat.accesslog.enabled: true
 
 jwt.secret-key: ${secret-key}
 

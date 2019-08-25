@@ -12,16 +12,10 @@ import lombok.Setter;
 @Getter
 public class ResWorkoutRegisterDto {
 
-//	@Setter
 	private int exp;
 
 	private int currExp;
 
 	private int nextExp;
-
-//	public ResWorkoutRegisterDto(User user) {
-//		this.currExp = user.getExp();
-//		this.nextExp = user.getNextExp();
-//	}
 
 }
