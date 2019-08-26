@@ -41,3 +41,6 @@ jwt.secret-key: ${secret-key}
 
 ---
 
+server.tomcat.baseDir: ./log/
+server.tomcat.accesslog.pattern: "%{yyyy-MM-dd HH:mm:ss}t\t%s\t%r\t%{User-Agent}i\t%{Referer}i\t%a\t%b"   
+server.tomcat.accesslog.enabled: true
